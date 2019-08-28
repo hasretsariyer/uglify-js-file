@@ -5,7 +5,7 @@ const paths = {
     constants: "constants",
     duck: "duck",
     lib: "lib",
-    other: "other",
+    app: "app",
     pages: "pages",
     router: "router",
     services: "services",
@@ -22,4 +22,4 @@ const keeps = {
 
 const prefix = "handm-";
 
-Uglify({ paths, keeps, prefix});
+Uglify({ paths, keeps, prefix });
