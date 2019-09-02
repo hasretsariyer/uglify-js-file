@@ -1,25 +1,8 @@
 const Uglify = require("./uglify");
-
-const paths = {
-    components: "components",
-    constants: "constants",
-    duck: "duck",
-    lib: "lib",
-    app: "app",
-    pages: "pages",
-    router: "router",
-    services: "services",
-    sf_modules: "sf_modules",
-    library: "node_modules/library",
-    utils: "utils",
-    ui: "ui",
-    stores: "stores"
-};
-
-const keeps = {
-    // "/home/ubuntu/workspace/scripts/router/index": true
-};
+const fileSystem = require("./filesystem");
 
 const prefix = "handm-";
+const excludingFolders = ["node_modules", "themes"];
 
-Uglify({ paths, keeps, prefix });
+let listOfFolders = fileSystem.getListOfFolders("/home/ubuntu/workspace/scripts", excludingFolders);
+Uglify({ paths: listOfFolders, prefix });

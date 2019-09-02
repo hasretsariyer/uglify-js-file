@@ -10,17 +10,17 @@ const regexPattern = /(require\([\'\"])(.+)([\'\"]\))/gm; // .js de olabilir
 
 const uglifier = ({
     paths,
-    keeps,
-    prefix
+    keeps = {},
+    prefix = "uglifier-"
 }) => {
     let files = {};
-    for(var inputFolder in paths) {
-        console.log("=============== " + paths[inputFolder] + " ===============");
-        fileSystem.getAllFiles(fileSystem.scriptsPath + paths[inputFolder]).forEach(function(file){
+    paths.forEach(function(fileName) {
+        console.log("=============== " + fileName + " ===============");
+        fileSystem.getAllFiles(fileSystem.scriptsPath + fileName).forEach(function(file){
             files[file.absolutePath] = prefix + uuidv4();
             console.log(file.absolutePath + " === " + files[file.absolutePath]);
         });
-    }
+    });
     
     findAndReplaceAllRequiredPages(files, keeps);
     writeMappingFile(files);
